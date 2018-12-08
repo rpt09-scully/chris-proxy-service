@@ -1,0 +1,25 @@
+{
+  "name": "chris-proxy-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server-dev": "nodemon ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rpt09-scully/chris-proxy-service.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rpt09-scully/chris-proxy-service/issues"
+  },
+  "homepage": "https://github.com/rpt09-scully/chris-proxy-service#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.7"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
