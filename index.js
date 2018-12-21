@@ -8,7 +8,7 @@ app.engine('html', handleBarsExpress());
 app.set('view engine', 'html');
 app.set('views', __dirname + '/public');
 
-const PORT = process.env.PORT || 3000;
+const PORT = (process.env.NODE_ENV === 'production') ? 80 : 3000;
 
 app.use('/', express.static(__dirname + '/public/'));
 // because we use layout.html...im going to just serve that as root
