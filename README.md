@@ -1,6 +1,11 @@
 # Chris's Proxy Service
 
-Proxy service for 9Trails. TO launch
+
+NPM Dependencies:
+  - express
+  - express-handlebars (for templating) 
+
+Proxy service for 9Trails. To launch
 
 ``` sh
 # install if you haven't yet 
