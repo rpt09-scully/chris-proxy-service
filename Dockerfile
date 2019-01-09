@@ -1,6 +1,8 @@
 FROM node:8.9.4
 # copy files from current folder to container folder
-COPY . .
+RUN mkdir app
+COPY . ./app
+WORKDIR app
 # install npm under production env so dev dependencies dont get installed
 ENV NODE_ENV=production
 RUN npm install

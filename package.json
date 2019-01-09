@@ -6,11 +6,13 @@
   "scripts": {
     "server-dev": "nodemon ./index.js",
     "connect": "ssh -i ~/.ssh/mine2.pem  ec2-user@ec2-3-84-218-221.compute-1.amazonaws.com",
-    "deploy": "rsync --include .git --exclude-from=\"$(git -C . ls-files --exclude-standard -oi --directory >.git/ignores.tmp && echo .git/ignores.tmp)\" -rave \"ssh -i ~/.ssh/mine2.pem\" . ec2-user@ec2-3-84-218-221.compute-1.amazonaws.com:/home/ec2-user/app",
+    "copyToServer": "rsync --include .git --exclude-from=\"$(git -C . ls-files --exclude-standard -oi --directory >.git/ignores.tmp && echo .git/ignores.tmp)\" -rave \"ssh -i ~/.ssh/mine2.pem\" . ec2-user@ec2-3-84-218-221.compute-1.amazonaws.com:/home/ec2-user/app",
+    "deploy": "npm run copyToServer && ssh -i ~/.ssh/mine2.pem ec2-user@ec2-3-84-218-221.compute-1.amazonaws.com 'cd /home/ec2-user/app && ./buildRun.sh'",
     "dockerPrune": "docker system prune",
     "dockerStop": "docker rm $(docker stop $(docker ps -a -q --filter ancestor=chris-proxy-service --format=\"{{.ID}}\"))",
     "dockerBuild": "docker build --rm -t chris-proxy-service .",
-    "dockerRun": "docker run -p 80:80 chris-proxy-service"
+    "dockerRun": "docker run -p 80:80 chris-proxy-service",
+    "dbr": "npm run dockerBuild && npm run dockerRun"
   },
   "repository": {
     "type": "git",
