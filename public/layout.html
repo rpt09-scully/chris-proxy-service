@@ -18,6 +18,9 @@
 </head>
 
 <body>
+  <div class='NT-loading'>
+    <div class='loading-text'><img src='https://s3.amazonaws.com/9trails-gpx/general/loading_spinner.gif'></div>
+  </div>
   <div class="container-fluid">
     <div id='menu' class="row justify-content-center">
       <div id='menu_left' class='row flex-row col-4 col-md-5 text-left'> 
@@ -104,14 +107,14 @@
               <!-- tab time -->
               <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                  <a class="nav-item nav-link active" id="nav-reviews-tab" data-toggle="tab" href="#nav-reviews" role="tab" aria-controls="nav-reviews" aria-selected="true">Reviews</a>
-                  <a class="nav-item nav-link" id="nav-photos-tab" data-toggle="tab" href="#nav-photos" role="tab" aria-controls="nav-photos" aria-selected="false">Photos</a>
-                  <a class="nav-item nav-link" id="nav-recordings-tab" data-toggle="tab" href="#nav-recordings" role="tab" aria-controls="nav-recordings" aria-selected="false">Recordings</a>
+                  <a class="nav-item nav-link active" id="nav-reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="nav-reviews" aria-selected="true">Reviews</a>
+                  <a class="nav-item nav-link" id="nav-photos-tab" data-toggle="tab" href="#photos" role="tab" aria-controls="nav-photos" aria-selected="false">Photos</a>
+                  <a class="nav-item nav-link" id="nav-recordings-tab" data-toggle="tab" href="#recordings" role="tab" aria-controls="nav-recordings" aria-selected="false">Recordings</a>
                 </div>
               </nav>
               <div class="tab-content" id="nav-tabContent">
                 <!-- reviews -->
-                <div class="tab-pane fade show active" id="nav-reviews" role="tabpanel" aria-labelledby="nav-reviews-tab">
+                <div class="tab-pane fade show active" id="reviews" role="tabpanel" aria-labelledby="nav-reviews-tab">
                   <!-- TODO: ryan change this and push to a namespaced thing -->
                   <div id='9Trails.ReviewService.ReviewModule'>
                     <h2> Wow Reviews! </h2>
@@ -133,7 +136,7 @@
                   </div>
                 </div>
                 <!-- photos -->
-                <div class="tab-pane fade" id="nav-photos" role="tabpanel" aria-labelledby="nav-photos-tab">
+                <div class="tab-pane fade" id="photos" role="tabpanel" aria-labelledby="nav-photos-tab">
                 <div id='9Trails.TrailPhotosService.App'>
                     <h2> Wow Photos! </h2>
                     <div class='servicePlaceholder row flex-row justify-content-center align-items-center'>
@@ -154,7 +157,7 @@
                   </div>
                 </div>
                 <!-- recordings -->
-                <div class="tab-pane fade" id="nav-recordings" role="tabpanel" aria-labelledby="nav-recordings-tab">
+                <div class="tab-pane fade" id="recordings" role="tabpanel" aria-labelledby="nav-recordings-tab">
                   <div id='9Trails.PathsService.Recordings'>
                     <h2> Wow Recordings! </h2>
                     <div class='servicePlaceholder row flex-row justify-content-center align-items-center'>
@@ -210,39 +213,7 @@
   <script src='http://localhost:3005/app.js'></script>
   {{/if}}
   <!-- DOM that -->
-    <script>
-    // if properly namespaced the DOM insertion is automated!
-    Object.keys(window.NT).forEach((serviceKey) => {
-      // now get service object
-      Object.keys(window.NT[serviceKey]).forEach((widgetKey) => {
-        try {
-          const dom_id = `9Trails.${serviceKey}.${widgetKey}`;
-          const currentWidget = window.NT[serviceKey][widgetKey];
-          ReactDOM.render(React.createElement(currentWidget), document.getElementById(dom_id));
-          // success
-          console.log(`
-          /////////////////////////////////////////////////////
-
-          ✅ ${serviceKey}.${widgetKey}
-          
-          /////////////////////////////////////////////////////
-          `);
-        } catch (e) {
-          // error 
-          console.log(`
-          /////////////////////////////////////////////////////
-
-          ❌ ${serviceKey}.${widgetKey}
-          An error occurred: ${e}
-          
-          /////////////////////////////////////////////////////
-          `);
-          // output
-          console.error( `Error for ${serviceKey}.${widgetKey}`, e);
-        }
-      });
-    });
-  </script>
+  <script src='js/app.js'></script>
 </body>
 
 </html>
